@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",                // 出力するJavaScriptのバージョン
+    "module": "esnext",             // モジュールの種類
+    "strict": true,                 // 厳密な型チェック
+    "esModuleInterop": true,        // ESモジュールのインポート形式をサポート
+    "skipLibCheck": true,           // ライブラリチェックをスキップ
+    "outDir": "./dist",             // コンパイル後の出力先
+    "rootDir": "./src"              // ソースファイルの場所
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

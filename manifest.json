@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "chrome_macro",
+  "version": "1.0",
+  "description": "auto screenshot",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "downloads",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "dist/macro.js"
+  },
+  "action": {
+    "default_popup": "src/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["dist/macro.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
