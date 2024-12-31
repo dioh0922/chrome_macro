@@ -51,9 +51,11 @@ def onselect(eclick, erelease):
   
   # 画像を切り出す
   cropped_image = image.crop((start_x, start_y, end_x, end_y))
+  plt.close()
 
 
 def cropAllImage():
+  #TODO: result/tmpのみにしたい
   for dirpath, dirnames, filenames in os.walk(parent_dir):
     for filename in filenames:
       # 各ファイルのフルパスを作成
@@ -85,7 +87,8 @@ def main():
       print(f"ウィンドウ '{target_window.title}' をアクティブにします。")
 
       #title = input("タイトルを入力：")
-      page = int(input("ページ数を入力："))
+      page = int(input("ページ数を入力(の半分を繰り返す)："))
+      page = int(page / 2) + 1
       makedir()
 
       target_window.activate()
