@@ -56,7 +56,7 @@ def onselect(eclick, erelease):
 
 def cropAllImage():
   #TODO: result/tmpのみにしたい
-  for dirpath, dirnames, filenames in os.walk(parent_dir):
+  for dirpath, dirnames, filenames in os.walk(os.path.join(parent_dir, dir_name)):
     for filename in filenames:
       # 各ファイルのフルパスを作成
       file_path = os.path.join(parent_dir, dir_name, filename)
@@ -68,7 +68,8 @@ def cropTarget(image_path):
   target_image = Image.open(image_path) 
   image_array = target_image.convert("RGB")
   edit_image = target_image.crop((start_x, start_y, end_x, end_y))
-  edit_image.save(image_path)
+  edit_image.save(image_path.replace('.png', '.jpg'), format="JPEG", quality=60)
+  os.remove(image_path)
 
 def main():
   windows = gw.getAllWindows()
@@ -105,12 +106,11 @@ def main():
       # 切り抜きのための範囲選択
 
       # 画像を表示し、ユーザーに矩形選択を促す
-      fig, ax = plt.subplots()
+      fig, ax = plt.subplots(figsize=(10, 8), dpi=180)
       ax.imshow(image_array)
 
       # RectangleSelectorを設定
       selector = RectangleSelector(ax, onselect, useblit=True, button=[1], spancoords='pixels', interactive=True)
-
       plt.show()
 
       # 切り抜いた画像があれば表示（選択後に実行される）
